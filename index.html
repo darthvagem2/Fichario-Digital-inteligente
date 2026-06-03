@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fichário Digital Inteligente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">FD</div>
+        <div>
+          <strong>Fichário Digital</strong>
+          <span>Inteligente</span>
+        </div>
+      </div>
+
+      <button class="nav-button active" id="dashboardBtn" type="button">
+        <span>⌂</span> Dashboard
+      </button>
+
+      <div class="sidebar-section">
+        <div class="section-title">Matérias</div>
+        <div class="subject-tabs" id="subjectTabs"></div>
+      </div>
+
+      <button class="create-button" id="newSubjectBtn" type="button">
+        <span>+</span> Nova matéria
+      </button>
+
+      <div class="sidebar-footer">
+        <button class="ghost-button" id="settingsBtn" type="button">⚙ Configurações</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-button mobile-only" id="menuBtn" type="button" title="Abrir menu">☰</button>
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input id="globalSearch" type="search" placeholder="Buscar matérias, conteúdos e anotações...">
+          <div class="search-results" id="searchResults"></div>
+        </div>
+        <select id="themeSelect" class="theme-select" title="Tema">
+          <option value="light">Claro</option>
+          <option value="dark">Escuro</option>
+          <option value="vintage">Papel antigo</option>
+          <option value="neon">Neon moderno</option>
+          <option value="minimal">Minimalista</option>
+        </select>
+        <button class="pill-button" id="studyModeBtn" type="button">◐ Modo Estudo</button>
+        <button class="pill-button" id="backupBtn" type="button">⇅ Backup</button>
+      </header>
+
+      <section class="view dashboard-view" id="dashboardView">
+        <div class="hero-band">
+          <div>
+            <p class="eyebrow">Seu fichário vivo</p>
+            <h1>Organize aulas, provas e ideias em um espaço só.</h1>
+          </div>
+          <button class="primary-action" id="heroNewSubjectBtn" type="button"><span>+</span> Criar matéria</button>
+        </div>
+        <div class="stats-row" id="statsRow"></div>
+        <div class="dashboard-head">
+          <h2>Matérias</h2>
+          <span id="subjectCount"></span>
+        </div>
+        <div class="subjects-grid" id="subjectsGrid"></div>
+      </section>
+
+      <section class="view binder-view hidden" id="binderView">
+        <div class="binder">
+          <aside class="dividers-panel">
+            <div class="subject-cover" id="subjectCover"></div>
+            <div class="content-actions">
+              <button class="primary-action compact" id="newContentBtn" type="button"><span>+</span> Conteúdo</button>
+              <select id="tagFilter" class="tag-filter">
+                <option value="">Todas as tags</option>
+              </select>
+            </div>
+            <div class="contents-list" id="contentsList"></div>
+          </aside>
+
+          <article class="paper-area" id="paperArea">
+            <div class="paper-toolbar word-ribbon" id="paperToolbar" aria-label="Ferramentas do editor">
+              <div class="ribbon-group wide">
+                <span>Fonte</span>
+                <div class="ribbon-row">
+                  <select class="ribbon-select" data-cmd="fontName" title="Fonte">
+                    <option value="Inter">Inter</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times</option>
+                    <option value="Calibri">Calibri</option>
+                    <option value="Courier New">Courier</option>
+                  </select>
+                  <select class="ribbon-select size-select" data-cmd="fontSize" title="Tamanho">
+                    <option value="2">12</option>
+                    <option value="3" selected>14</option>
+                    <option value="4">18</option>
+                    <option value="5">24</option>
+                    <option value="6">32</option>
+                    <option value="7">48</option>
+                  </select>
+                </div>
+                <div class="ribbon-row">
+                  <button data-cmd="bold" title="Negrito"><b>B</b></button>
+                  <button data-cmd="italic" title="Itálico"><i>I</i></button>
+                  <button data-cmd="underline" title="Sublinhado"><u>U</u></button>
+                  <button data-cmd="strikeThrough" title="Tachado"><s>S</s></button>
+                  <label class="color-tool" title="Cor do texto">A<input type="color" data-cmd="foreColor" value="#17202a"></label>
+                  <label class="color-tool marker" title="Marca-texto">▰<input type="color" data-cmd="hiliteColor" value="#fff176"></label>
+                </div>
+              </div>
+
+              <div class="ribbon-group">
+                <span>Parágrafo</span>
+                <div class="ribbon-row">
+                  <button data-cmd="insertUnorderedList" title="Lista">•</button>
+                  <button data-cmd="insertOrderedList" title="Lista numerada">1.</button>
+                  <button data-action="checklist" title="Checklist">☑</button>
+                  <button data-cmd="outdent" title="Diminuir recuo">⇤</button>
+                  <button data-cmd="indent" title="Aumentar recuo">⇥</button>
+                </div>
+                <div class="ribbon-row">
+                  <button data-cmd="justifyLeft" title="Alinhar à esquerda">☰</button>
+                  <button data-cmd="justifyCenter" title="Centralizar">≡</button>
+                  <button data-cmd="justifyRight" title="Alinhar à direita">☷</button>
+                  <button data-cmd="justifyFull" title="Justificar">▤</button>
+                </div>
+              </div>
+
+              <div class="ribbon-group">
+                <span>Estilos</span>
+                <div class="ribbon-row">
+                  <button data-cmd="formatBlock" data-value="h1" title="Título">Título</button>
+                  <button data-cmd="formatBlock" data-value="h2" title="Subtítulo">Sub</button>
+                  <button data-cmd="formatBlock" data-value="p" title="Texto normal">Normal</button>
+                  <button data-cmd="formatBlock" data-value="blockquote" title="Citação">❝</button>
+                </div>
+                <div class="ribbon-row">
+                  <button data-action="callout" title="Bloco de destaque">◆</button>
+                  <button data-action="code" title="Código">{ }</button>
+                  <button data-action="hr" title="Separador">─</button>
+                  <button data-action="table" title="Inserir tabela">▦</button>
+                </div>
+              </div>
+
+              <div class="ribbon-group">
+                <span>Documento</span>
+                <div class="ribbon-row">
+                  <button data-cmd="undo" title="Desfazer">↶</button>
+                  <button data-cmd="redo" title="Refazer">↷</button>
+                  <button data-action="link" title="Inserir link">🔗</button>
+                  <button data-cmd="removeFormat" title="Limpar formatação">⌫</button>
+                </div>
+                <div class="ribbon-row">
+                  <button data-action="download-note" title="Baixar anotação">Baixar</button>
+                  <button data-action="print" title="Imprimir">Imprimir</button>
+                </div>
+              </div>
+            </div>
+            <div class="empty-paper" id="emptyPaper">
+              <h2>Escolha ou crie um conteúdo</h2>
+              <p>As suas anotações, tags, prioridade e favoritos aparecem aqui.</p>
+            </div>
+            <div class="editor-wrap hidden" id="editorWrap">
+              <div class="editor-head">
+                <input id="contentTitleInput" class="title-input" placeholder="Título do conteúdo">
+                <button class="favorite-button" id="favoriteBtn" type="button" title="Favorito">☆</button>
+              </div>
+              <div class="meta-grid">
+                <label>Prioridade
+                  <select id="prioritySelect">
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                  </select>
+                </label>
+                <label>Tags
+                  <input id="tagsInput" placeholder="prova, revisar, SAT">
+                </label>
+              </div>
+              <div class="chips-line" id="activeTags"></div>
+              <div class="document-page">
+                <div id="editor" class="editor" contenteditable="true" spellcheck="true"></div>
+              </div>
+              <div class="editor-statusbar">
+                <span id="wordStatus">0 palavras · 0 caracteres</span>
+                <span class="save-status" id="saveStatus">Salvo automaticamente</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="study-timer hidden" id="studyTimer">
+    <strong id="timerDisplay">25:00</strong>
+    <button id="timerToggle" type="button">Iniciar</button>
+    <button id="timerReset" type="button">Reiniciar</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <form class="modal" id="subjectModal">
+      <h2 id="subjectModalTitle">Matéria</h2>
+      <label>Nome
+        <input id="subjectName" required maxlength="48" placeholder="Matemática">
+      </label>
+      <label>Descrição
+        <textarea id="subjectDescription" rows="3" placeholder="Resumo, objetivos ou plano de estudo"></textarea>
+      </label>
+      <div class="form-row">
+        <label>Cor
+          <input id="subjectColor" type="color" value="#2f80ed">
+        </label>
+        <label>Ícone
+          <select id="subjectIcon">
+            <option>📘</option><option>🧮</option><option>🧬</option><option>🌍</option>
+            <option>⚗</option><option>🎨</option><option>💬</option><option>🏛</option>
+            <option>💡</option><option>✏</option><option>📐</option><option>🎧</option>
+          </select>
+        </label>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="ghost-button" data-close>Cancelar</button>
+        <button type="submit" class="primary-action">Salvar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-backdrop hidden" id="backupModal">
+    <div class="modal">
+      <h2>Backup e dados</h2>
+      <p class="muted">Exporte, importe ou limpe todos os dados do fichário.</p>
+      <div class="backup-grid">
+        <button class="primary-action" id="exportBtn" type="button">Exportar JSON</button>
+        <label class="import-label">Importar JSON<input id="importInput" type="file" accept="application/json"></label>
+        <button class="danger-button" id="wipeBtn" type="button">Apagar tudo</button>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="ghost-button" data-close-backup>Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
