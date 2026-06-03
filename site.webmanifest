@@ -1,0 +1,16 @@
+{
+  "name": "Fichário Digital Inteligente",
+  "short_name": "Fichário",
+  "description": "Fichário escolar digital com anotações, matérias, tags, modo estudo e backup local.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#eef2f6",
+  "theme_color": "#2f80ed",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
