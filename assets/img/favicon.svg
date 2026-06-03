@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Fichário Digital Inteligente">
+  <defs>
+    <linearGradient id="cover" x1="16" x2="112" y1="12" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2f80ed"/>
+      <stop offset="1" stop-color="#16a085"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#eef2f6"/>
+  <path fill="url(#cover)" d="M32 18h58c8.8 0 16 7.2 16 16v74H38c-8.8 0-16-7.2-16-16V28c0-5.5 4.5-10 10-10Z"/>
+  <path fill="#fff" opacity=".9" d="M42 38h44v8H42zm0 20h50v8H42zm0 20h34v8H42z"/>
+  <path fill="#17202a" opacity=".18" d="M22 32h16v76H22z"/>
+  <circle cx="32" cy="48" r="4" fill="#fff"/>
+  <circle cx="32" cy="72" r="4" fill="#fff"/>
+  <circle cx="32" cy="96" r="4" fill="#fff"/>
+</svg>
