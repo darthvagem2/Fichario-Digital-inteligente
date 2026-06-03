@@ -1,1 +1,0 @@
-# Fichario-Digital-inteligente
